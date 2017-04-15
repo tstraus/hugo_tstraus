@@ -11,11 +11,11 @@ Hi, I'm Tucker. I'm from south central Pennsylvania, where I went to high school
 #### Hobbies
 * Various electronics and programming projects
 * Drawing and Photography
-* Learning C++, Go, web development, and Python
+* Learning C++, Rust, and graphics programming
 * Learning electric guitar and bass
 
 #### Interests
 * Jennie
-* PC Gaming (Starcraft, GTA, and League of Legends)
+* PC Gaming (Starcraft, GTA, League of Legends, CIV VI)
 * Music
 * Cars, driving

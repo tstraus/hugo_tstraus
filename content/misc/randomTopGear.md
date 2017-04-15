@@ -12,9 +12,9 @@ title = "Random Top Gear UK Episode Generator"
     <input id="all" type="radio" name="optionsRadios" value="all" checked>
         All episodes
 </label>
-<label for="hulu" class="pure-radio">
-    <input id="hulu" type="radio" name="optionsRadios" value="hulu">
-        Hulu only
+<label for="amazon" class="pure-radio">
+    <input id="amazon" type="radio" name="optionsRadios" value="amazon">
+        Amazon Prime only
 </label>
 <label for="netflix" class="pure-radio">
     <input id="netflix" type="radio" name="optionsRadios" value="netflix">
