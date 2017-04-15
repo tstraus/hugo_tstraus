@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://tstra.us/misc/counter/</loc>
+    <lastmod>2016-11-13T15:49:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/misc/go/</loc>
+    <lastmod>2016-05-28T16:59:37-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/drawings/fountainPen/</loc>
+    <lastmod>2016-05-21T20:04:48-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/code/goPi/</loc>
+    <lastmod>2016-05-21T09:41:33-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/misc/probe/</loc>
+    <lastmod>2016-05-21T09:38:07-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/misc/randomMythbusters/</loc>
+    <lastmod>2016-05-21T09:33:41-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/misc/randomTopGear/</loc>
+    <lastmod>2016-05-21T09:30:29-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/drawings/poodles/</loc>
+    <lastmod>2016-05-21T09:15:18-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/code/goSum/</loc>
+    <lastmod>2016-05-21T08:41:34-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/code/goLinkGrabber/</loc>
+    <lastmod>2016-05-21T08:41:33-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/drawings/drawingsFromClass/</loc>
+    <lastmod>2016-05-18T18:29:56-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/resume/</loc>
+    <lastmod>2016-05-18T18:07:35-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/about/</loc>
+    <lastmod>2016-05-16T20:58:49-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/about/</loc>
+    <lastmod>2016-05-16T20:58:49-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/code/</loc>
+    <lastmod>2016-05-21T09:41:33-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/drawings/</loc>
+    <lastmod>2016-05-21T20:04:48-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/misc/</loc>
+    <lastmod>2016-11-13T15:49:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/resume/</loc>
+    <lastmod>2016-05-18T18:07:35-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/</loc>
+    <lastmod>2016-11-13T15:49:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

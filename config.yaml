@@ -1,0 +1,36 @@
+languageCode: "en-us"
+contentdir: "content"
+publishdir: "public"
+builddrafts: false
+baseurl: "http://tstra.us"
+theme: "theme"
+canonifyurls: true
+title: "tstraus"
+author: "Tucker Strausbaugh"
+copyright: "be nice"
+
+
+indexes:
+   category: "categories"
+   tag: "tags"
+
+params:
+  AuthorName: "Tucker"
+  github: "https://github.com/tstraus"
+  facebook: "https://www.facebook.com/tckrsstrsbgh"
+  email: "strausbaugh.tucker@gmail.com"
+  description: "all the asdf"
+  cv: "/pages/cv"
+  legalnotice: "/pages/legal-notice"
+  linkedin: "https://www.linkedin.com/in/tucker-strausbaugh-04018027"
+  cover: "/images/background-cover.jpg"
+  logo: "/img/logo-1.jpg"
+  links:
+    About: "/about/"
+    Resume: "/resume/"
+    Drawings: "/drawings/"
+    Code: "/code/"
+    Misc: "/misc/"
+  ProfilePicture: "/images/tuckles.jpg"
+  enableLandingPage: true
+  landingPageRedirectUrl: "/about/"

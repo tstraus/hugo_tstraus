@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Water Quality Probe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.18.1" />
+  <link href="" rel="alternate" type="application/rss+xml" title="tstraus" />
+  <link href="http://tstra.us/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://tstra.us/css/hc.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  
+    
+    </head>
+    <body>
+<div class="nav-toggle"><i class="fa fa-bars fa-2x"></i> Herring Cove </div>
+      <div id = "wrapper">
+
+
+<div class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="http://tstra.us/"><p class="navbar-brand">tstraus</p></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+					
+					
+					<li><a href="http://tstra.us/about/">About </a></li>
+					
+					<li><a href="http://tstra.us/code/">Code </a></li>
+					
+					<li><a href="http://tstra.us/drawings/">Drawings </a></li>
+					
+					<li><a href="http://tstra.us/misc/">Misc </a></li>
+					
+					<li><a href="http://tstra.us/resume/">Resume </a></li>
+					
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+       
+       <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+					<img src="http://tstra.us/images/tuckles.jpg" />
+          <li class="sidebar-brand"><a href="http://tstra.us/"><h1 class="brand">tstraus</h1></a><h3>all the asdf</h3></li>
+          <hr />
+					
+						<li><a href="http://tstra.us/about/">About </a></li>
+					
+						<li><a href="http://tstra.us/code/">Code </a></li>
+					
+						<li><a href="http://tstra.us/drawings/">Drawings </a></li>
+					
+						<li><a href="http://tstra.us/misc/">Misc </a></li>
+					
+						<li><a href="http://tstra.us/resume/">Resume </a></li>
+					
+          <hr />
+          <div id="social-wrapper">
+           <li> <a href="https://www.facebook.com/tckrsstrsbgh"><i class="fa fa-facebook-square"></i> facebook</a></li>
+           <li> <a href="https://www.linkedin.com/in/tucker-strausbaugh-04018027"><i class="fa fa-linkedin-square"></i> linkedin</a> </li>
+           <li> <a href="https://github.com/tstraus"><i class="fa fa-github-square"></i> github</a> </li>
+           
+         </div>
+       </ul>
+     </div>
+
+
+
+     <div class="container">
+
+
+  <div id="article">
+   <div class="article-title">Water Quality Probe</div>
+   <p class="meta"><small>&nbsp;<i class="fa fa-calendar-o"></i> 2016-05-21</small></p> <hr/>
+   <div class="post">
+     <p>This water quality probe was mine, and three others, senior project in computer engineering that we worked on during our final year at Elizabethtown College. We meant to produce the probe as simply as possible, more as a proof of concept, instead of proving how small or cheapily the device could be made. Most of the electronics were off-the-shelf parts from <a href="https://adafruit.com">Adafruit</a> and <a href="https://sparkfun.com">Sparkfun</a>, all contained in a 3D-printed casing we designed.</p>
+
+<p><img src="../../images/waterProbe/Trans.png" alt="" />
+This render was made by me using SolidWorks to prove that all of the components would fit inside the casing. This was important as both pieces took a combined 14 hours to print on the engineering department&rsquo;s new 3D printer.</p>
+
+<hr />
+
+<p><img src="../../images/waterProbe/Proto.jpg" alt="" /></p>
+
+<p>But before all of that we had do acquire, test, and program our components.</p>
+
+<pre><code>- Arduino Nano
+- Micro SD breakout (Adafruit)
+- CC3000 WiFi breakout (Adafruit)
+- DS1307 Real Time Clock breakout (Adafruit)
+- DHT22 Air Temperature and Humidity
+- pH Sensor Kit (Atlas Scientific)
+- Dallas One-Wire Waterproof Temperature Sensor
+</code></pre>
+
+<hr />
+
+<p><img src="../../images/waterProbe/Battery.jpg" alt="" /></p>
+
+<p>Our power system thanks to a massive LiPo battery and some efficient code could power the system for almost a full month non stop while taking readings every 15 minutes.</p>
+
+<pre><code>- 6000mAh 3.7V Lithium Polymer Battery (Sparkfun)
+- USB Charger with passthrough (Sparkfun)
+- 3.3V -&gt; 5V Voltage Booster/Regulator
+</code></pre>
+
+<hr />
+
+<p><img src="../../images/waterProbe/Board.jpg" alt="" /></p>
+
+<p>After testing, it took some creative soldering to fit all of the components onto a 6cm X 8cm prototype PCB.</p>
+
+<hr />
+
+<p><img src="../../images/waterProbe/Top.png" alt="" /></p>
+
+<p>Full render of the insides with the lid removed. Yeah&hellip; I spent way to much time on that&hellip;</p>
+
+<hr />
+
+<p><img src="../../images/waterProbe/Shell.jpg" alt="" /></p>
+
+<p>Casing moments after its printing was completed. Afterwards it was lightly sanded and then sealed with several coats of acrylic sealer for water proofing. The sensors in the bottom and the lid we water sealed with silicone.</p>
+
+   </div>
+ </div>
+
+
+ <ul class="pager">
+      &nbsp;<li class="previous"><a href="http://tstra.us/code/goPi/"> Monte Carlo Estimation of Pi (GoLang)</a></li>
+      &nbsp;<li class="next"><a href="http://tstra.us/misc/randomMythbusters/"> Random Mythbusters Episode Generator</a></li>
+</ul>
+
+
+
+    </ul>
+    </div>
+    <footer>
+
+        <p class="text-muted credit">&copy; 2017. All rights reserved. </p>
+    </footer>
+ 
+    <script src="http://tstra.us/js/jquery-1.10.2.min.js"></script>
+    <script src="http://tstra.us/js/bootstrap.min.js"></script>
+    <script src="http://tstra.us/js/bootstrap.js"></script>
+    <script type="text/javascript" src="http://tstra.us/js/hc.js"></script>
+</body>
+
+</html>
+

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Resumes on tstraus</title>
+    <link>http://tstra.us/resume/index.xml</link>
+    <description>Recent content in Resumes on tstraus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>be nice</copyright>
+    <lastBuildDate>Wed, 18 May 2016 18:07:35 -0400</lastBuildDate>
+    <atom:link href="http://tstra.us/resume/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Resume</title>
+      <link>http://tstra.us/resume/</link>
+      <pubDate>Wed, 18 May 2016 18:07:35 -0400</pubDate>
+      
+      <guid>http://tstra.us/resume/</guid>
+      <description>
+
+&lt;h1 id=&#34;tucker-strausbaugh&#34;&gt;Tucker Strausbaugh&lt;/h1&gt;
+
+&lt;h2 id=&#34;strausbaught-etown-edu&#34;&gt;strausbaught@etown.edu&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;education&#34;&gt;Education&lt;/h3&gt;
+
+&lt;h4 id=&#34;elizabethtown-college-may-2015-elizabethtown-pa&#34;&gt;Elizabethtown College: May 2015 - Elizabethtown, PA&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Bachelor of Science in Computer Engineering, ABET accredited&lt;/li&gt;
+&lt;li&gt;GPA Overall: 3.32, Major: 3.39&lt;/li&gt;
+&lt;li&gt;Dean&amp;rsquo;s List in Fall 2013 and Spring 2015&lt;/li&gt;
+&lt;li&gt;2013 Faculty Service Award in Engineering &amp;amp; Physics&lt;/li&gt;
+&lt;li&gt;Member of Sigma Pi Sigma, National Physics Honors Society&lt;/li&gt;
+&lt;li&gt;Member of the Order of the Engineer&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;spring-grove-area-high-school-june-2011-spring-grove-pa&#34;&gt;Spring Grove Area High School: June 2011 - Spring Grove, PA&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;GPA: 3.49&lt;/li&gt;
+&lt;li&gt;Advanced Placement in Chemistry and Physics&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;relevant-coursework&#34;&gt;Relevant Coursework&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Computer Science I &amp;amp; II Java&lt;/strong&gt; (CS 121 &amp;amp; 122) - loops, sorting, pointers, GUI&amp;rsquo;s, recursion, threads&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Physics I, II, &amp;amp; III&lt;/strong&gt; (PHY 200, 201, and 202) - calculus based mechanics, kinematics, dynamics, electricity, magnetism, waves, fluids, thermodynamics, and optics&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Calculus I, II, &amp;amp; III&lt;/strong&gt; (MA 121, 122, &amp;amp; 222) - differential and integral calculus (in 2D and 3D using plane, parametric, and polar coordinates), series and sequences, and multivariable calculus&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Differential Equations&lt;/strong&gt; (MA 321) - matrix algebra, complex plane, Laplace Transform, Fourier series and Transform&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Circuit Analysis &amp;amp; Electronics&lt;/strong&gt; (EGR 210 &amp;amp; 220) - linear, DC, AC, and transient analysis for circuits including resistors, capacitors, inductors, op-amps, diodes, transitors, MOSFETs&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Computer Organization and Architecture&lt;/strong&gt; (EGR 332) - Boolean algebra, designing sequential and combinational circuits, and studying basic requirements of computer systems&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Digital Circuits and Computer Interfacing&lt;/strong&gt; (EGR 333) - design of logic and integrated circuits, programming in machine language, worked with TTL chips, PLC&amp;rsquo;s, FPGA&amp;rsquo;s, and 8051 microcontrollers&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Signals and Systems &amp;amp; Control Systems&lt;/strong&gt; (EGR 310 &amp;amp; 410) - differential, Fourier, Laplace, discrete analysis; design, analysis, and simulation of control systems as well as performance analysis&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Green Robotics, Automation, and Machine Intelligence&lt;/strong&gt; (EGR 434) - artificial neural networks, robotic arm design, rapid adaptation to situations that can&amp;rsquo;t be defined with equations, real- time control, and path-planning&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Systems Programming&lt;/strong&gt; (CS 222) - dynamic data structures, memory allocation, interrupts in C&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Compiler Design&lt;/strong&gt; (CS 421) - compilers, interpreters, code optimization, and assemblers&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Operating Systems&lt;/strong&gt; (CS 422) - resource allocation, interrupts, scheduling, drivers, and files&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Advanced Computer Engineering&lt;/strong&gt; (EGR 433) - circuit-level design and implementation of complete computer systems, lectures on microcontroller, processor, and neural network design&lt;/p&gt;
+
+&lt;h3 id=&#34;experience&#34;&gt;Experience&lt;/h3&gt;
+
+&lt;h4 id=&#34;rg-group-electrical-engineering-intern-and-electronics-technician-summer-2014&#34;&gt;RG Group: Electrical Engineering Intern and Electronics Technician - Summer 2014&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Assisted with design, calibration, production methods, and manufacturing of the TOMI SteraMist decontamination system.&lt;/li&gt;
+&lt;li&gt;Troubleshooting legacy control systems and circuit boards in order to upgrade.&lt;/li&gt;
+&lt;li&gt;Vaporized Hydrogen Peroxide and then applied a high voltage to the spray to transform it into a Reactive Oxygen Species. This causes cellular disruption of harmful organisms.&lt;/li&gt;
+&lt;li&gt;Designed for sterilization use in the medical industry.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;engineering-projects&#34;&gt;Engineering Projects&lt;/h3&gt;
+
+&lt;h4 id=&#34;16-bit-computer-architecture&#34;&gt;16-Bit Computer Architecture&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Designed a simple programmable 16-bit architecture and memory system.&lt;/li&gt;
+&lt;li&gt;Fully documented in report and presented to ABET during reaccreditation.&lt;/li&gt;
+&lt;li&gt;Later wrote an assembler to make programing much faster and simpler.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;wireless-water-quality-probe&#34;&gt;Wireless Water Quality Probe&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Uses dissolved oxygen, Ph level, and temperature sensors to gather long-term data on a body of water, casing designed in SolidWorks then 3D printed.&lt;/li&gt;
+&lt;li&gt;Uses Wi-Fi to upload data to webserver for easy data retrieval.&lt;/li&gt;
+&lt;li&gt;Weatherproof to withstand long term environmental data.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;skills&#34;&gt;Skills&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Experience programming in C, C++, Java, x86 and 8051 Assembly, Mathematica, and MATLAB&lt;/li&gt;
+&lt;li&gt;In depth knowledge of SolidWorks, Eclipse, C, Logisim, Python, Microsoft Excel, Microsoft Word, Microsoft PowerPoint, Phoenix Contact and Siemens PLC&amp;rsquo;s&lt;/li&gt;
+&lt;li&gt;Experience with Inventor, Spice, Ladder Logic, FPGA&amp;rsquo;s, circuit prototyping, Solid Edge&lt;/li&gt;
+&lt;li&gt;Great time management, teamwork, leadership skills, and a hunger to learn&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;personal-activities&#34;&gt;Personal Activities&lt;/h3&gt;
+
+&lt;h4 id=&#34;college&#34;&gt;College&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Vice President of Elizabethtown College&amp;rsquo;s Robotics and Machine Intelligence Club. Constructing a competitive land robot with full image processing.&lt;/li&gt;
+&lt;li&gt;Mentor in the Elizabethtown Public Library S.T.E.M. Xplorer&amp;rsquo;s Club, an after school youth science education club. Competes in the annual SeaPerch robot competition.&lt;/li&gt;
+&lt;li&gt;Personal projects with Arduino and Atmel microcontrollers. Many of these led into the design of the Water Quality Probe.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;high-school&#34;&gt;High School&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Section and Student Leader in Spring Grove&amp;rsquo;s Marching Band and Drumline.&lt;/li&gt;
+&lt;li&gt;Member of Students Against Destructive Decisions (S.A.D.D.) for all four years.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;references&#34;&gt;References&lt;/h3&gt;
+
+&lt;h4 id=&#34;dr-joseph-wunderlich&#34;&gt;Dr. Joseph Wunderlich&lt;/h4&gt;
+
+&lt;p&gt;Assoc. Professor and Associate Chair of Engineering Elizabethtown College
+(717) 368-9715, wunderjt@etown.edu&lt;/p&gt;
+
+&lt;h4 id=&#34;ed-stum&#34;&gt;Ed Stum&lt;/h4&gt;
+
+&lt;p&gt;Vice President &amp;amp; General Manager Manufacturing RG Group
+(717) 849-0399, ed.stum@rg-group.com&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;../files/Resume.pdf&#34;&gt;PDF Version&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Abouts on tstraus</title>
+    <link>http://tstra.us/about/index.xml</link>
+    <description>Recent content in Abouts on tstraus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>be nice</copyright>
+    <lastBuildDate>Mon, 16 May 2016 20:58:49 -0400</lastBuildDate>
+    <atom:link href="http://tstra.us/about/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>About</title>
+      <link>http://tstra.us/about/</link>
+      <pubDate>Mon, 16 May 2016 20:58:49 -0400</pubDate>
+      
+      <guid>http://tstra.us/about/</guid>
+      <description>
+
+&lt;h4 id=&#34;computer-engineer-cat&#34;&gt;Computer Engineer - Cat?&lt;/h4&gt;
+
+&lt;p&gt;Hi, I&amp;rsquo;m Tucker. I&amp;rsquo;m from south central Pennsylvania, where I went to high school in Spring Grove and was the section leader of the drumline and earned the name Tuckles. Recently I graduated from Elizabethtown College with a B.S. in Computer Engineering. Now I&amp;rsquo;ve moved to Lexington Park and work with NAVAIR.&lt;/p&gt;
+
+&lt;h4 id=&#34;hobbies&#34;&gt;Hobbies&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Various electronics and programming projects&lt;/li&gt;
+&lt;li&gt;Drawing and Photography&lt;/li&gt;
+&lt;li&gt;Learning C++, Go, web development, and Python&lt;/li&gt;
+&lt;li&gt;Learning electric guitar and bass&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;interests&#34;&gt;Interests&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Jennie&lt;/li&gt;
+&lt;li&gt;PC Gaming (Starcraft, GTA, and League of Legends)&lt;/li&gt;
+&lt;li&gt;Music&lt;/li&gt;
+&lt;li&gt;Cars, driving&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

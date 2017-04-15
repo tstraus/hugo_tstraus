@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Codes on tstraus</title>
+    <link>http://tstra.us/code/index.xml</link>
+    <description>Recent content in Codes on tstraus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>be nice</copyright>
+    <lastBuildDate>Sat, 21 May 2016 09:41:33 -0400</lastBuildDate>
+    <atom:link href="http://tstra.us/code/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Monte Carlo Estimation of Pi (GoLang)</title>
+      <link>http://tstra.us/code/goPi/</link>
+      <pubDate>Sat, 21 May 2016 09:41:33 -0400</pubDate>
+      
+      <guid>http://tstra.us/code/goPi/</guid>
+      <description>&lt;p&gt;&lt;link href=&#34;../../css/prism.css&#34; rel=&#34;stylesheet&#34;/&gt;
+&lt;script src=&#34;../../scripts/prism.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;This program uses goroutines to calculate a Monte Carlo estimation of Pi. It randomly generates points and them checks if its inside the circle. The proportion of the points inside and the total points is then used to estimate Pi.&lt;/p&gt;
+
+&lt;p&gt;On an Intel 3770k, it accurately estimates Pi to 4 decimal digits using 1 trillion random points in just over 5 seconds.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;math&amp;quot;
+    &amp;quot;math/rand&amp;quot;
+    &amp;quot;os&amp;quot;
+    &amp;quot;runtime&amp;quot;
+    &amp;quot;strconv&amp;quot;
+    &amp;quot;sync&amp;quot;
+    &amp;quot;time&amp;quot;
+)
+
+func monte_carlo_pi(radius float64, reps int, result *int, wait *sync.WaitGroup) {
+    var x, y float64
+    count := 0
+    seed := rand.NewSource(time.Now().UnixNano())
+    random := rand.New(seed)
+
+    for i := 0; i &amp;lt; reps; i++ {
+        x = random.Float64() * radius
+        y = random.Float64() * radius
+
+        if num := math.Sqrt(x*x + y*y); num &amp;lt; radius {
+            count++
+        }
+    }
+
+    *result = count
+    wait.Done()
+}
+
+func main() {
+    cores := runtime.NumCPU()
+    runtime.GOMAXPROCS(cores)
+
+    var wait sync.WaitGroup
+
+    counts := make([]int, cores)
+
+    samples, _ := strconv.Atoi(os.Args[1])
+
+    start := time.Now()
+    wait.Add(cores)
+
+    for i := 0; i &amp;lt; cores; i++ {
+        go monte_carlo_pi(100.0, samples/cores, &amp;amp;counts[i], &amp;amp;wait)
+    }
+
+    wait.Wait()
+
+    total := 0
+    for i := 0; i &amp;lt; cores; i++ {
+        total += counts[i]
+    }
+
+    pi := (float64(total) / float64(samples)) * 4
+
+    fmt.Println(&amp;quot;Time: &amp;quot;, time.Since(start))
+    fmt.Println(&amp;quot;pi: &amp;quot;, pi)
+    fmt.Println(&amp;quot;&amp;quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Mutithreaded Sumation (GoLang)</title>
+      <link>http://tstra.us/code/goSum/</link>
+      <pubDate>Sat, 21 May 2016 08:41:34 -0400</pubDate>
+      
+      <guid>http://tstra.us/code/goSum/</guid>
+      <description>&lt;p&gt;&lt;link href=&#34;../../css/prism.css&#34; rel=&#34;stylesheet&#34;/&gt;
+&lt;script src=&#34;../../scripts/prism.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;This was my first attempt to write something that uses the simplicity of threading in Go using goroutines. The number of threads is determined in the program and the run time is calculated.&lt;/p&gt;
+
+&lt;p&gt;The performance of Go is really shown off when I compared the times to a similar single threaded program written in Python. For the sum of 1 through 1 billion, Python&amp;rsquo;s time was measured in minutes, and Go took less then a 10th of a second.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;sync&amp;quot;
+    &amp;quot;time&amp;quot;
+    &amp;quot;runtime&amp;quot;
+    )
+
+func sum(low int, high int, result *int, wait *sync.WaitGroup) {
+    sum := 0
+
+    for i := low; i &amp;lt;= high; i++ {
+        sum += i
+    }
+    //fmt.Println(sum)
+    *result = sum
+    wait.Done()
+}
+
+func main() {
+    cores := runtime.NumCPU()
+    runtime.GOMAXPROCS(cores)
+    //fmt.Println(cores)
+    var wait sync.WaitGroup
+    subs := make([]int, cores)
+    var max int
+    min := 1
+    /*var min int
+    fmt.Scan(&amp;amp;min)*/
+    fmt.Scan(&amp;amp;max)
+    start := time.Now()
+    wait.Add(cores)
+
+    for i := 0; i &amp;lt; cores; i++ {
+        go sum(min + (max / cores) * (i), (max / cores) * (i + 1), &amp;amp;subs[i], &amp;amp;wait)
+        fmt.Println(&amp;quot;go started&amp;quot;)
+    }
+
+    wait.Wait()
+    var sum int
+
+    for i := 0; i &amp;lt; cores; i++ {
+        sum += subs[i]
+    }
+    fmt.Println(sum)
+    fmt.Println(time.Since(start))
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>HTML Link Grabber (GoLang)</title>
+      <link>http://tstra.us/code/goLinkGrabber/</link>
+      <pubDate>Sat, 21 May 2016 08:41:33 -0400</pubDate>
+      
+      <guid>http://tstra.us/code/goLinkGrabber/</guid>
+      <description>&lt;p&gt;&lt;link href=&#34;../../css/prism.css&#34; rel=&#34;stylesheet&#34;/&gt;
+&lt;script src=&#34;../../scripts/prism.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;This program takes in a web address as a command line argument. Then goes and gets that page and then prints out all of the links to other pages. While not all that useful, it was a good first step into web programming.&lt;/p&gt;
+
+&lt;p&gt;Credit for this goes to Jack Canty&amp;rsquo;s website because I&amp;rsquo;ve never written anything like this. His can be found &lt;a href=&#34;https://jdanger.com/build-a-web-crawler-in-go.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+import (
+    &amp;quot;fmt&amp;quot;
+    &amp;quot;flag&amp;quot;
+    &amp;quot;net/http&amp;quot;
+    &amp;quot;os&amp;quot;
+    &amp;quot;io&amp;quot;
+    &amp;quot;golang.org/x/net/html&amp;quot;
+)
+
+func main() {
+    flag.Parse()
+    arg := flag.Args()
+    fmt.Println(arg)
+
+    if len(arg) == 0 {
+        fmt.Printf(&amp;quot;Enter a page\nex. \&amp;quot;http://google.com\&amp;quot;&amp;quot;)
+        os.Exit(1)
+    }
+
+    data, error := http.Get(arg[0])   
+    if error != nil {
+        return
+    }
+    defer data.Body.Close()
+    links := collectLinks(data.Body)
+
+    for _, link := range(links) {
+        fmt.Printf(&amp;quot;\t&amp;quot;)
+        fmt.Println(link)
+    }
+}
+
+func collectLinks(httpBody io.Reader) []string {
+    links := make([]string, 0)
+    page := html.NewTokenizer(httpBody)
+    for {
+        tokenType := page.Next()
+        if tokenType == html.ErrorToken {
+            return links
+        }
+        token := page.Token()
+        if tokenType == html.StartTagToken &amp;amp;&amp;amp; token.DataAtom.String() == &amp;quot;a&amp;quot; {
+            for _, attr := range token.Attr {
+                if attr.Key == &amp;quot;href&amp;quot; {
+                    links = append(links, attr.Val)
+                }
+            }
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
