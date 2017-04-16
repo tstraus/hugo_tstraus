@@ -1,6 +1,9 @@
 +++
 date = "2016-05-18T18:07:35-04:00"
 title = "Resume"
+Categories = []
+Tags = []
+Description = "Resume"
 
 +++
 
