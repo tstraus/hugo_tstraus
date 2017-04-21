@@ -14,6 +14,8 @@ This program uses goroutines to calculate a Monte Carlo estimation of Pi. It ran
 
 On an Intel 3770k, it accurately estimates Pi to 4 decimal digits using 1 trillion random points in just over 5 seconds.
 
+<iframe src="https://ghbtns.com/github-btn.html?user=tstraus&repo=goPi&type=star&count=false&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+
 ~~~go
 package main
 

@@ -12,6 +12,7 @@ Description = "Monte Carlo Estimation of Pi (Rust)"
 
 This program uses futures to calculate pi using a monte carlo method. It randomly generates points and checks if they are inside of a unit circle. The proportion of the points inside and the total number of points are then used to estimate Pi.
 
+<iframe src="https://ghbtns.com/github-btn.html?user=tstraus&repo=monte_carlo_pi_rust&type=star&count=false&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
 
 ~~~rust
 extern crate rand;

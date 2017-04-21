@@ -12,6 +12,8 @@ title = "cppPi"
 
 This program uses C++11's futures to estimate pi.
 
+<iframe src="https://ghbtns.com/github-btn.html?user=tstraus&repo=asyncMonteCarloPi&type=star&count=false&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+
 ~~~cpp
 // Compile with the flags "-O3 -std=c++11"
 // might need -pthread
