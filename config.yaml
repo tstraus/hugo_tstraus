@@ -26,11 +26,11 @@ params:
   cover: "/images/background-cover.jpg"
   logo: "/img/logo-1.jpg"
   links:
-    About: "/about/"
-    Resume: "/resume/"
+    About: "/about/home"
+    Resume: "/resume/home"
     Drawings: "/drawings/"
     Code: "/code/"
     Misc: "/misc/"
   ProfilePicture: "/images/tuckles.jpg"
   enableLandingPage: true
-  landingPageRedirectUrl: "/about/"
+  landingPageRedirectUrl: "/about/home"
