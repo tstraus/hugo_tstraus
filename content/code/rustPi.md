@@ -1,9 +1,9 @@
 +++
 date = "2017-04-15T17:37:05-04:00"
-title = "rustPi"
+title = "Monte Carlo Estimation of Pi (Rust)"
 Categories = []
 Tags = []
-Description = "Monte Carlo Estimation of Pi (Rust)"
+Description = ""
 
 +++
 
