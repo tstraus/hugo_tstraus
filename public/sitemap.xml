@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://tstra.us/code/traffic/</loc>
+    <lastmod>2017-04-21T09:51:47-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/code/perceptron/</loc>
+    <lastmod>2017-04-21T08:54:59-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/code/cpppi/</loc>
+    <lastmod>2017-04-15T17:37:11-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/code/rustpi/</loc>
+    <lastmod>2017-04-15T17:37:05-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/misc/counter/</loc>
+    <lastmod>2016-11-13T15:49:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/misc/go/</loc>
+    <lastmod>2016-05-28T16:59:37-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/drawings/fountainpen/</loc>
+    <lastmod>2016-05-21T20:04:48-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/code/gopi/</loc>
+    <lastmod>2016-05-21T09:41:33-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/misc/probe/</loc>
+    <lastmod>2016-05-21T09:38:07-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/misc/randommythbusters/</loc>
+    <lastmod>2016-05-21T09:33:41-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/misc/randomtopgear/</loc>
+    <lastmod>2016-05-21T09:30:29-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/drawings/poodles/</loc>
+    <lastmod>2016-05-21T09:15:18-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/code/gosum/</loc>
+    <lastmod>2016-05-21T08:41:34-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/code/golinkgrabber/</loc>
+    <lastmod>2016-05-21T08:41:33-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/drawings/drawingsfromclass/</loc>
+    <lastmod>2016-05-18T18:29:56-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/resume/home/</loc>
+    <lastmod>2016-05-18T18:07:35-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/about/home/</loc>
+    <lastmod>2016-05-16T20:58:49-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/about/</loc>
+    <lastmod>2016-05-16T20:58:49-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/code/</loc>
+    <lastmod>2017-04-21T09:51:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/drawings/</loc>
+    <lastmod>2016-05-21T20:04:48-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/misc/</loc>
+    <lastmod>2016-11-13T15:49:00-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/resume/</loc>
+    <lastmod>2016-05-18T18:07:35-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://tstra.us/</loc>
+    <lastmod>2017-04-21T09:51:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

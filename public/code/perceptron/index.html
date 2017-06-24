@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Single Neuron Perceptron (C&#43;&#43;)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.23" />
+  <link href="" rel="alternate" type="application/rss+xml" title="tstraus" />
+  <link href="http://tstra.us/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://tstra.us/css/hc.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  
+    
+    </head>
+    <body>
+<div class="nav-toggle"><i class="fa fa-bars fa-2x"></i> Herring Cove </div>
+      <div id = "wrapper">
+
+
+<div class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="http://tstra.us/"><p class="navbar-brand">tstraus</p></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+					
+					
+					<li><a href="http://tstra.us/about/home">About </a></li>
+					
+					<li><a href="http://tstra.us/code/">Code </a></li>
+					
+					<li><a href="http://tstra.us/drawings/">Drawings </a></li>
+					
+					<li><a href="http://tstra.us/misc/">Misc </a></li>
+					
+					<li><a href="http://tstra.us/resume/home">Resume </a></li>
+					
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+       
+       <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+					<img src="http://tstra.us/images/tuckles.jpg" />
+          <li class="sidebar-brand"><a href="http://tstra.us/"><h1 class="brand">tstraus</h1></a><h3>Tucker Strausbaugh</h3></li>
+          <hr />
+					
+						<li><a href="http://tstra.us/about/home">About </a></li>
+					
+						<li><a href="http://tstra.us/code/">Code </a></li>
+					
+						<li><a href="http://tstra.us/drawings/">Drawings </a></li>
+					
+						<li><a href="http://tstra.us/misc/">Misc </a></li>
+					
+						<li><a href="http://tstra.us/resume/home">Resume </a></li>
+					
+          <hr />
+          <div id="social-wrapper">
+           <li> <a href="https://www.facebook.com/tckrsstrsbgh"><i class="fa fa-facebook-square"></i> facebook</a></li>
+           <li> <a href="https://www.linkedin.com/in/tucker-strausbaugh-04018027"><i class="fa fa-linkedin-square"></i> linkedin</a> </li>
+           <li> <a href="https://github.com/tstraus"><i class="fa fa-github-square"></i> github</a> </li>
+           
+         </div>
+       </ul>
+     </div>
+
+
+
+     <div class="container">
+
+
+  <div id="article">
+   <div class="article-title">Single Neuron Perceptron (C&#43;&#43;)</div>
+   <p class="meta"><small>&nbsp;<i class="fa fa-calendar-o"></i> 2017-04-21</small></p> <hr/>
+   <div class="post">
+     
+
+<p><link href="../../css/prism.css" rel="stylesheet"/>
+<script src="../../scripts/prism.js"></script></p>
+
+<p>This is a basic implementation of a single neuron perceptron that can learn to act as AND, OR, and NAND gates in C++.</p>
+
+<iframe src="https://ghbtns.com/github-btn.html?user=tstraus&repo=perceptron&type=star&count=false&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+
+<h4 id="neuron-h">neuron.h</h4>
+
+<pre><code class="language-cpp">#ifndef __NEURON_H__
+#define __NEURON_H__
+
+#include &lt;vector&gt;
+#include &lt;tuple&gt;
+
+using namespace std;
+
+class Neuron
+{
+public:
+	Neuron(int numberOfInputs);
+
+	~Neuron() {};
+
+	double forward(vector&lt;bool&gt; inputs);
+
+	bool forwardBinary(vector&lt;bool&gt; inputs);
+
+	bool forwardBinaryCheck(vector&lt;bool&gt; inputs, bool answer);
+
+	bool train(vector&lt;bool&gt; inputs, bool answers);
+
+private:
+	vector&lt;double&gt; weights; // input weights
+	
+	vector&lt;Neuron&gt; inputs; // for future backpropagation
+	
+	vector&lt;Neuron&gt; outputs; // for futude backpropagation
+
+	double threshold; // trigger threshold
+
+	double learningRate; //  how aggressive to tune the above values
+};
+
+#endif // __NEURON_H__
+</code></pre>
+
+<hr />
+
+<h4 id="neuron-cpp">neuron.cpp</h4>
+
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;math.h&gt;
+
+#include &quot;neuron.h&quot;
+
+using namespace std;
+
+Neuron::Neuron(int numberOfInputs)
+{
+	for (int i = 0; i &lt; numberOfInputs; i++)
+		weights.push_back(1.0 / numberOfInputs);
+
+	threshold = 0.9;
+	learningRate = 0.01;
+}
+
+double Neuron::forward(vector&lt;bool&gt; inputs)
+{
+	if (inputs.size() == weights.size())
+	{
+		double sum = 0.0;
+		for (int i = 0; i &lt; inputs.size(); i++)
+			sum += inputs[i] * weights[i];
+
+		return tanh(sum);
+	}
+	
+	return -1;
+}
+
+bool Neuron::forwardBinary(vector&lt;bool&gt; inputs)
+{
+	if (inputs.size() == weights.size())
+	{
+		if (forward(inputs) &gt; threshold)
+			return true;
+	}
+
+	return false;
+}
+
+bool Neuron::forwardBinaryCheck(vector&lt;bool&gt; inputs, bool answer)
+{
+	if (inputs.size() == weights.size())
+	{
+		bool result = forwardBinary(inputs);
+
+		if (result == answer)
+			return true;
+	}
+	
+	return false;
+}
+
+bool Neuron::train(vector&lt;bool&gt; inputs, bool answer)
+{
+	if (inputs.size() == weights.size())
+	{
+		bool result = forwardBinary(inputs);
+
+		for (int i = 0; i &lt; inputs.size(); i++)
+			weights[i] += learningRate * ((double)answer - (double)result) * (double)inputs[i];
+
+		threshold -= learningRate * ((double)answer - (double)result);
+
+		/*for (int i = 0; i &lt; weights.size(); i++)
+			cout &lt;&lt; &quot;Weight &quot; &lt;&lt; i &lt;&lt; &quot;: &quot; &lt;&lt; weights[i] &lt;&lt; &quot;\n&quot;;
+		cout &lt;&lt; &quot;Threshold: &quot; &lt;&lt; threshold &lt;&lt; &quot;\n&quot;;*/
+
+		if (result == answer)
+			return true;
+	}
+
+	return false;
+}
+</code></pre>
+
+<hr />
+
+<h4 id="main-cpp">main.cpp</h4>
+
+<pre><code class="language-cpp">#include &quot;neuron.h&quot;
+#include &quot;json.hpp&quot;
+
+#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;chrono&gt;
+#include &lt;random&gt;
+
+using namespace std;
+using json = nlohmann::json;
+
+int main(int argc, char** argv)
+{
+	ifstream file(&quot;Answers.json&quot;);
+	json answers;
+	file &gt;&gt; answers;
+
+	unsigned int seed = (unsigned int)chrono::system_clock::now().time_since_epoch().count();
+	default_random_engine engine(seed);
+	uniform_int_distribution&lt;unsigned int&gt; rand(0, 1);
+
+	int numInputs = 3;
+	unsigned int reps = 1000;
+
+	Neuron neuron(numInputs);
+
+	vector&lt;bool&gt; inputs;
+	inputs.reserve(numInputs);
+	vector&lt;bool&gt; results;
+	inputs.reserve(reps);
+
+	for (unsigned int i = 0; i &lt; reps; i++)
+	{
+		for (int i = 0; i &lt; numInputs; i++)
+			inputs.push_back(rand(engine) != 0);
+
+		bool answer = inputs[0];
+		if (numInputs &gt; 0)
+		{
+			for (int i = 1; i &lt; numInputs; i++)
+				//answer = answer || inputs[i]; // learn to be an OR gate
+				answer = answer &amp;&amp; inputs[i]; // learn to be an AND gate
+
+			answer = !answer; // learn to be a NAND gate
+		}
+
+		results.push_back(neuron.train(inputs, answer));
+		inputs.clear();
+	}
+
+	for (auto&amp; result : results)
+		cout &lt;&lt; &quot;result:  &quot; &lt;&lt; result &lt;&lt; &quot;\n&quot;;
+
+	cout &lt;&lt; &quot;---------------------------------&quot; &lt;&lt; endl;
+	// OR gate
+	//cout &lt;&lt; &quot;correct: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 0, 0, 0 }, false) &lt;&lt; endl;
+	//cout &lt;&lt; &quot;correct: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 0, 0, 1 }, true) &lt;&lt; endl;
+	//cout &lt;&lt; &quot;correct: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 0, 1, 0 }, true) &lt;&lt; endl;
+	//cout &lt;&lt; &quot;correct: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 0, 1, 1 }, true) &lt;&lt; endl;
+	//cout &lt;&lt; &quot;correct: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 1, 0, 0 }, true) &lt;&lt; endl;
+	//cout &lt;&lt; &quot;correct: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 1, 0, 1 }, true) &lt;&lt; endl;
+	//cout &lt;&lt; &quot;correct: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 1, 1, 0 }, true) &lt;&lt; endl;
+	//cout &lt;&lt; &quot;correct: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 1, 1, 1 }, true) &lt;&lt; endl;
+
+	// AND gate
+	//cout &lt;&lt; &quot;correct: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 0, 0, 0 }, false) &lt;&lt; endl;
+	//cout &lt;&lt; &quot;correct: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 0, 0, 1 }, false) &lt;&lt; endl;
+	//cout &lt;&lt; &quot;correct: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 0, 1, 0 }, false) &lt;&lt; endl;
+	//cout &lt;&lt; &quot;correct: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 0, 1, 1 }, false) &lt;&lt; endl;
+	//cout &lt;&lt; &quot;correct: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 1, 0, 0 }, false) &lt;&lt; endl;
+	//cout &lt;&lt; &quot;correct: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 1, 0, 1 }, false) &lt;&lt; endl;
+	//cout &lt;&lt; &quot;correct: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 1, 1, 0 }, false) &lt;&lt; endl;
+	//cout &lt;&lt; &quot;correct: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 1, 1, 1 }, true) &lt;&lt; endl;
+
+	// NAND gate
+	cout &lt;&lt; &quot;check: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 0, 0, 0 }, true) &lt;&lt; endl;
+	cout &lt;&lt; &quot;check: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 0, 0, 1 }, true) &lt;&lt; endl;
+	cout &lt;&lt; &quot;check: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 0, 1, 0 }, true) &lt;&lt; endl;
+	cout &lt;&lt; &quot;check: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 0, 1, 1 }, true) &lt;&lt; endl;
+	cout &lt;&lt; &quot;check: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 1, 0, 0 }, true) &lt;&lt; endl;
+	cout &lt;&lt; &quot;check: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 1, 0, 1 }, true) &lt;&lt; endl;
+	cout &lt;&lt; &quot;check: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 1, 1, 0 }, true) &lt;&lt; endl;
+	cout &lt;&lt; &quot;check: &quot; &lt;&lt; neuron.forwardBinaryCheck({ 1, 1, 1 }, false) &lt;&lt; endl;
+
+	return 0;
+}
+</code></pre>
+
+   </div>
+ </div>
+
+
+ <ul class="pager">
+      &nbsp;<li class="previous"><a href="http://tstra.us/code/traffic/"> Crappy Traffic Sim (C&#43;&#43;)</a></li>
+      &nbsp;<li class="next"><a href="http://tstra.us/code/cpppi/"> Async Monte Carlo Pi (C&#43;&#43;)</a></li>
+</ul>
+
+
+
+    </ul>
+    </div>
+    <footer>
+
+        <p class="text-muted credit">&copy; 2017. All rights reserved. </p>
+    </footer>
+ 
+    <script src="http://tstra.us/js/jquery-1.10.2.min.js"></script>
+    <script src="http://tstra.us/js/bootstrap.min.js"></script>
+    <script src="http://tstra.us/js/bootstrap.js"></script>
+    <script type="text/javascript" src="http://tstra.us/js/hc.js"></script>
+</body>
+
+</html>
+

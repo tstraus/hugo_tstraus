@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Crappy Traffic Sim (C&#43;&#43;)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.23" />
+  <link href="" rel="alternate" type="application/rss+xml" title="tstraus" />
+  <link href="http://tstra.us/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://tstra.us/css/hc.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  
+    
+    </head>
+    <body>
+<div class="nav-toggle"><i class="fa fa-bars fa-2x"></i> Herring Cove </div>
+      <div id = "wrapper">
+
+
+<div class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="http://tstra.us/"><p class="navbar-brand">tstraus</p></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+					
+					
+					<li><a href="http://tstra.us/about/home">About </a></li>
+					
+					<li><a href="http://tstra.us/code/">Code </a></li>
+					
+					<li><a href="http://tstra.us/drawings/">Drawings </a></li>
+					
+					<li><a href="http://tstra.us/misc/">Misc </a></li>
+					
+					<li><a href="http://tstra.us/resume/home">Resume </a></li>
+					
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+       
+       <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+					<img src="http://tstra.us/images/tuckles.jpg" />
+          <li class="sidebar-brand"><a href="http://tstra.us/"><h1 class="brand">tstraus</h1></a><h3>Tucker Strausbaugh</h3></li>
+          <hr />
+					
+						<li><a href="http://tstra.us/about/home">About </a></li>
+					
+						<li><a href="http://tstra.us/code/">Code </a></li>
+					
+						<li><a href="http://tstra.us/drawings/">Drawings </a></li>
+					
+						<li><a href="http://tstra.us/misc/">Misc </a></li>
+					
+						<li><a href="http://tstra.us/resume/home">Resume </a></li>
+					
+          <hr />
+          <div id="social-wrapper">
+           <li> <a href="https://www.facebook.com/tckrsstrsbgh"><i class="fa fa-facebook-square"></i> facebook</a></li>
+           <li> <a href="https://www.linkedin.com/in/tucker-strausbaugh-04018027"><i class="fa fa-linkedin-square"></i> linkedin</a> </li>
+           <li> <a href="https://github.com/tstraus"><i class="fa fa-github-square"></i> github</a> </li>
+           
+         </div>
+       </ul>
+     </div>
+
+
+
+     <div class="container">
+
+
+  <div id="article">
+   <div class="article-title">Crappy Traffic Sim (C&#43;&#43;)</div>
+   <p class="meta"><small>&nbsp;<i class="fa fa-calendar-o"></i> 2017-04-21</small></p> <hr/>
+   <div class="post">
+     
+
+<p><link href="../../css/prism.css" rel="stylesheet"/>
+<script src="../../scripts/prism.js"></script></p>
+
+<p>I wrote this late one night where I went down the rabbit hole of simulating traffic. It has each vehicle as its own thread, which is completely unnecessary for what it currently does. Right now the vehicles are given an average speed and its speed is modified with some noise, and does some basic collision detection.</p>
+
+<p>The idea is to eventually develop and train a simple neural network to drive each vehicle. In order to do this I started trying to write my own very simple neural network library.</p>
+
+<iframe src="https://ghbtns.com/github-btn.html?user=tstraus&repo=Traffic_Stuff&type=star&count=false&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+
+<h4 id="vehicle-h">Vehicle.h</h4>
+
+<pre><code class="language-cpp">#ifndef __TRAFFIC_STUFF_VEHICLE_H__
+#define __TRAFFIC_STUFF_VEHICLE_H__
+
+#include &lt;thread&gt;
+#include &lt;mutex&gt;
+
+using namespace std;
+
+class Vehicle
+{
+public:
+    Vehicle(double avgVelocity, double startingDistance = 0.0, unsigned char startingLane = 0, unsigned int updateRate = 50);
+
+    ~Vehicle();
+
+    void drive();
+
+    void stopThread();
+
+    double velocity;
+
+    struct {
+        double distance;
+
+        unsigned char lane;
+    } location;
+
+private:
+    void driveLoop(bool asdf);
+
+    double avgVelocity;
+
+    unsigned int updateRate;
+
+    thread* driveThread;
+
+    bool threadShouldBeRunning;
+
+    mutex mux;
+};
+
+#endif //__TRAFFIC_STUFF_VEHICLE_H__
+</code></pre>
+
+<hr />
+
+<h4 id="vehicle-cpp">Vehicle.cpp</h4>
+
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;random&gt;
+
+#include &quot;Vehicle.h&quot;
+
+using namespace std;
+
+Vehicle::Vehicle(double avgVelocity, double startingDistance, unsigned char startingLane, unsigned int updateRate)
+{
+    //cout &lt;&lt; &quot;Vehicle()&quot; &lt;&lt; endl;
+
+    threadShouldBeRunning = false;
+
+    mux.lock();
+    velocity = avgVelocity;
+    this-&gt;avgVelocity = avgVelocity;
+    location.distance = startingDistance;
+    location.lane = startingLane;
+    this-&gt;updateRate = updateRate;
+    mux.unlock();
+}
+
+Vehicle::~Vehicle()
+{
+    //cout &lt;&lt; &quot;~Vehicle()&quot; &lt;&lt; endl;
+}
+
+void Vehicle::drive()
+{
+    mux.lock();
+    threadShouldBeRunning = true;
+    mux.unlock();
+
+    driveThread = new thread(&amp;Vehicle::driveLoop, this, true);
+}
+
+void Vehicle::stopThread()
+{
+    mux.lock();
+    threadShouldBeRunning = false;
+    mux.unlock();
+
+    driveThread-&gt;join();
+}
+
+void Vehicle::driveLoop(bool asdf)
+{
+    //cout &lt;&lt; &quot;driveLoop()&quot; &lt;&lt; endl;
+
+    long long int seed = chrono::system_clock::now().time_since_epoch().count();
+    default_random_engine engine((unsigned int)seed);
+    normal_distribution&lt;double&gt; nextVelocity(avgVelocity, 1);
+
+    while (threadShouldBeRunning)
+    {
+        chrono::system_clock::time_point start = chrono::system_clock::now();
+
+        mux.lock();
+        location.distance += velocity * (updateRate / 3600000.0);
+        velocity = nextVelocity(engine);
+        mux.unlock();
+
+        this_thread::sleep_until(start + chrono::milliseconds(updateRate));
+    }
+}
+</code></pre>
+
+<hr />
+
+<h4 id="main-cpp">main.cpp</h4>
+
+<pre><code class="language-cpp">#include &lt;cmath&gt;
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;fstream&gt;
+
+#include &quot;Vehicle.h&quot;
+#include &quot;json.hpp&quot;
+
+using namespace std;
+using json = nlohmann::json;
+
+int main()
+{
+    vector&lt;Vehicle*&gt; vehicles;
+
+    ifstream file(&quot;Vehicles.json&quot;);
+    json config;
+    file &gt;&gt; config;
+
+    for (auto&amp; vehicle: config[&quot;vehicles&quot;])
+        vehicles.push_back(new Vehicle(vehicle[&quot;avgVelocity&quot;], vehicle[&quot;startingDistance&quot;], vehicle[&quot;startingLane&quot;], vehicle[&quot;updateRate&quot;]));
+
+   for (auto&amp; vehicle : vehicles)
+        vehicle-&gt;drive();
+
+    unsigned int first, second;
+    bool collision = false;
+    pair&lt;unsigned int, unsigned int&gt; collidedVehicles;
+
+    while (!collision)
+    {
+        chrono::system_clock::time_point start = chrono::system_clock::now();
+
+        first = 1;
+        for (auto&amp; vehicle: vehicles)
+        {
+            cout &lt;&lt; &quot;location: &quot; &lt;&lt; vehicle-&gt;location.distance &lt;&lt; &quot;mi\n&quot;;
+
+            second = 1;
+            for (auto&amp; i: vehicles)
+            {
+                if (vehicle != i &amp;&amp; vehicle-&gt;location.lane == i-&gt;location.lane &amp;&amp; abs(vehicle-&gt;location.distance - i-&gt;location.distance) &lt; 0.00287247) // length of a mid-size sedan in miles
+                {
+                    collidedVehicles.first = first;
+                    collidedVehicles.second = second;
+                    collision = true;
+                }
+
+                second++;
+            }
+
+            first++;
+        }
+
+        cout &lt;&lt; endl;
+
+        this_thread::sleep_until(start + chrono::milliseconds(50));
+    }
+
+    for (auto&amp; vehicle: vehicles)
+        vehicle-&gt;stopThread();
+
+    cout &lt;&lt; &quot;Collision between vehicle &quot; &lt;&lt; collidedVehicles.second &lt;&lt; &quot; and vehicle &quot; &lt;&lt; collidedVehicles.first &lt;&lt; endl;
+
+    for (auto&amp; vehicle: vehicles)
+        cout &lt;&lt; &quot;location: &quot; &lt;&lt; vehicle-&gt;location.distance &lt;&lt; &quot;mi&quot; &lt;&lt; endl;
+
+    return 0;
+}
+</code></pre>
+
+   </div>
+ </div>
+
+
+ <ul class="pager">
+     
+      &nbsp;<li class="next"><a href="http://tstra.us/code/perceptron/"> Single Neuron Perceptron (C&#43;&#43;)</a></li>
+</ul>
+
+
+
+    </ul>
+    </div>
+    <footer>
+
+        <p class="text-muted credit">&copy; 2017. All rights reserved. </p>
+    </footer>
+ 
+    <script src="http://tstra.us/js/jquery-1.10.2.min.js"></script>
+    <script src="http://tstra.us/js/bootstrap.min.js"></script>
+    <script src="http://tstra.us/js/bootstrap.js"></script>
+    <script type="text/javascript" src="http://tstra.us/js/hc.js"></script>
+</body>
+
+</html>
+

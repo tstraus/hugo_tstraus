@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Async Monte Carlo Pi (C&#43;&#43;)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.23" />
+  <link href="" rel="alternate" type="application/rss+xml" title="tstraus" />
+  <link href="http://tstra.us/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://tstra.us/css/hc.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  
+    
+    </head>
+    <body>
+<div class="nav-toggle"><i class="fa fa-bars fa-2x"></i> Herring Cove </div>
+      <div id = "wrapper">
+
+
+<div class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="http://tstra.us/"><p class="navbar-brand">tstraus</p></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+					
+					
+					<li><a href="http://tstra.us/about/home">About </a></li>
+					
+					<li><a href="http://tstra.us/code/">Code </a></li>
+					
+					<li><a href="http://tstra.us/drawings/">Drawings </a></li>
+					
+					<li><a href="http://tstra.us/misc/">Misc </a></li>
+					
+					<li><a href="http://tstra.us/resume/home">Resume </a></li>
+					
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+       
+       <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+					<img src="http://tstra.us/images/tuckles.jpg" />
+          <li class="sidebar-brand"><a href="http://tstra.us/"><h1 class="brand">tstraus</h1></a><h3>Tucker Strausbaugh</h3></li>
+          <hr />
+					
+						<li><a href="http://tstra.us/about/home">About </a></li>
+					
+						<li><a href="http://tstra.us/code/">Code </a></li>
+					
+						<li><a href="http://tstra.us/drawings/">Drawings </a></li>
+					
+						<li><a href="http://tstra.us/misc/">Misc </a></li>
+					
+						<li><a href="http://tstra.us/resume/home">Resume </a></li>
+					
+          <hr />
+          <div id="social-wrapper">
+           <li> <a href="https://www.facebook.com/tckrsstrsbgh"><i class="fa fa-facebook-square"></i> facebook</a></li>
+           <li> <a href="https://www.linkedin.com/in/tucker-strausbaugh-04018027"><i class="fa fa-linkedin-square"></i> linkedin</a> </li>
+           <li> <a href="https://github.com/tstraus"><i class="fa fa-github-square"></i> github</a> </li>
+           
+         </div>
+       </ul>
+     </div>
+
+
+
+     <div class="container">
+
+
+  <div id="article">
+   <div class="article-title">Async Monte Carlo Pi (C&#43;&#43;)</div>
+   <p class="meta"><small>&nbsp;<i class="fa fa-calendar-o"></i> 2017-04-15</small></p> <hr/>
+   <div class="post">
+     <p><link href="../../css/prism.css" rel="stylesheet"/>
+<script src="../../scripts/prism.js"></script></p>
+
+<p>This program uses C++11&rsquo;s futures to estimate pi.</p>
+
+<iframe src="https://ghbtns.com/github-btn.html?user=tstraus&repo=asyncMonteCarloPi&type=star&count=false&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+
+<pre><code class="language-cpp">// Compile with the flags &quot;-O3 -std=c++11&quot;
+// might need -pthread
+
+#include &lt;iostream&gt;
+#include &lt;future&gt;
+#include &lt;random&gt;
+#include &lt;chrono&gt;
+
+using namespace std;
+
+bool monteCarloPi(double x, double y)
+{
+    if (x*x + y*y &lt; 1.0)
+        return true;
+    
+    else
+        return false;
+}
+
+long int piThread(long int reps)
+{
+    long int count = 0;
+    
+    unsigned int seed = (unsigned int)chrono::system_clock::now().time_since_epoch().count();
+    default_random_engine engine(seed);
+    uniform_real_distribution&lt;double&gt; rand(0, 1);
+    
+    for (long int i = 0; i &lt; reps; i++)
+    {
+        if (monteCarloPi(rand(engine), rand(engine)))
+            count++;
+    }
+    
+    return count;
+}
+
+int main (int argc, char** argv)
+{
+    auto cores = thread::hardware_concurrency();
+    cout &lt;&lt; &quot;cores: &quot; &lt;&lt; cores &lt;&lt; endl;
+    
+    long int samples = 0;
+    
+    if (argc &gt; 1)
+        samples = atoll(argv[1]);
+    
+    cout &lt;&lt; &quot;samples: &quot; &lt;&lt; samples &lt;&lt; endl;
+    
+    future&lt;long int&gt;* results = new future&lt;long int&gt;[cores];
+    
+    auto start = chrono::steady_clock::now();
+    
+    for (unsigned i = 0; i &lt; cores; i++)
+        results[i] = async(launch::async, piThread, samples/cores);
+    
+    long int total = 0;
+    for (unsigned i = 0; i &lt; cores; i++)
+        total += results[i].get();
+    
+    double pi = ((double)total / double(samples)) * 4.0;
+    
+    auto duration = chrono::duration&lt;double, milli&gt;(chrono::steady_clock::now() - start);
+    
+    cout &lt;&lt; &quot;pi: &quot; &lt;&lt; pi &lt;&lt; endl;
+    cout &lt;&lt; &quot;runtime: &quot; &lt;&lt; duration.count() / 1000 &lt;&lt; &quot;s&quot; &lt;&lt; endl;
+}
+</code></pre>
+
+   </div>
+ </div>
+
+
+ <ul class="pager">
+      &nbsp;<li class="previous"><a href="http://tstra.us/code/perceptron/"> Single Neuron Perceptron (C&#43;&#43;)</a></li>
+      &nbsp;<li class="next"><a href="http://tstra.us/code/rustpi/"> Monte Carlo Estimation of Pi (Rust)</a></li>
+</ul>
+
+
+
+    </ul>
+    </div>
+    <footer>
+
+        <p class="text-muted credit">&copy; 2017. All rights reserved. </p>
+    </footer>
+ 
+    <script src="http://tstra.us/js/jquery-1.10.2.min.js"></script>
+    <script src="http://tstra.us/js/bootstrap.min.js"></script>
+    <script src="http://tstra.us/js/bootstrap.js"></script>
+    <script type="text/javascript" src="http://tstra.us/js/hc.js"></script>
+</body>
+
+</html>
+

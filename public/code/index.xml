@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Codes on tstraus</title>
+    <link>http://tstra.us/code/</link>
+    <description>Recent content in Codes on tstraus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>be nice</copyright>
+    <lastBuildDate>Fri, 21 Apr 2017 09:51:47 -0400</lastBuildDate>
+    
+	<atom:link href="http://tstra.us/code/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Crappy Traffic Sim (C&#43;&#43;)</title>
+      <link>http://tstra.us/code/traffic/</link>
+      <pubDate>Fri, 21 Apr 2017 09:51:47 -0400</pubDate>
+      
+      <guid>http://tstra.us/code/traffic/</guid>
+      <description>I wrote this late one night where I went down the rabbit hole of simulating traffic. It has each vehicle as its own thread, which is completely unnecessary for what it currently does. Right now the vehicles are given an average speed and its speed is modified with some noise, and does some basic collision detection.
+The idea is to eventually develop and train a simple neural network to drive each vehicle.</description>
+    </item>
+    
+    <item>
+      <title>Single Neuron Perceptron (C&#43;&#43;)</title>
+      <link>http://tstra.us/code/perceptron/</link>
+      <pubDate>Fri, 21 Apr 2017 08:54:59 -0400</pubDate>
+      
+      <guid>http://tstra.us/code/perceptron/</guid>
+      <description>This is a basic implementation of a single neuron perceptron that can learn to act as AND, OR, and NAND gates in C++.
+ neuron.h #ifndef __NEURON_H__ #define __NEURON_H__ #include &amp;lt;vector&amp;gt; #include &amp;lt;tuple&amp;gt; using namespace std; class Neuron { public: Neuron(int numberOfInputs); ~Neuron() {}; double forward(vector&amp;lt;bool&amp;gt; inputs); bool forwardBinary(vector&amp;lt;bool&amp;gt; inputs); bool forwardBinaryCheck(vector&amp;lt;bool&amp;gt; inputs, bool answer); bool train(vector&amp;lt;bool&amp;gt; inputs, bool answers); private: vector&amp;lt;double&amp;gt; weights; // input weights vector&amp;lt;Neuron&amp;gt; inputs; // for future backpropagation vector&amp;lt;Neuron&amp;gt; outputs; // for futude backpropagation double threshold; // trigger threshold double learningRate; // how aggressive to tune the above values }; #endif // __NEURON_H__  neuron.</description>
+    </item>
+    
+    <item>
+      <title>Async Monte Carlo Pi (C&#43;&#43;)</title>
+      <link>http://tstra.us/code/cpppi/</link>
+      <pubDate>Sat, 15 Apr 2017 17:37:11 -0400</pubDate>
+      
+      <guid>http://tstra.us/code/cpppi/</guid>
+      <description>This program uses C++11&amp;rsquo;s futures to estimate pi.
+ // Compile with the flags &amp;quot;-O3 -std=c++11&amp;quot; // might need -pthread #include &amp;lt;iostream&amp;gt; #include &amp;lt;future&amp;gt; #include &amp;lt;random&amp;gt; #include &amp;lt;chrono&amp;gt; using namespace std; bool monteCarloPi(double x, double y) { if (x*x + y*y &amp;lt; 1.0) return true; else return false; } long int piThread(long int reps) { long int count = 0; unsigned int seed = (unsigned int)chrono::system_clock::now().time_since_epoch().count(); default_random_engine engine(seed); uniform_real_distribution&amp;lt;double&amp;gt; rand(0, 1); for (long int i = 0; i &amp;lt; reps; i++) { if (monteCarloPi(rand(engine), rand(engine))) count++; } return count; } int main (int argc, char** argv) { auto cores = thread::hardware_concurrency(); cout &amp;lt;&amp;lt; &amp;quot;cores: &amp;quot; &amp;lt;&amp;lt; cores &amp;lt;&amp;lt; endl; long int samples = 0; if (argc &amp;gt; 1) samples = atoll(argv[1]); cout &amp;lt;&amp;lt; &amp;quot;samples: &amp;quot; &amp;lt;&amp;lt; samples &amp;lt;&amp;lt; endl; future&amp;lt;long int&amp;gt;* results = new future&amp;lt;long int&amp;gt;[cores]; auto start = chrono::steady_clock::now(); for (unsigned i = 0; i &amp;lt; cores; i++) results[i] = async(launch::async, piThread, samples/cores); long int total = 0; for (unsigned i = 0; i &amp;lt; cores; i++) total += results[i].</description>
+    </item>
+    
+    <item>
+      <title>Monte Carlo Estimation of Pi (Rust)</title>
+      <link>http://tstra.us/code/rustpi/</link>
+      <pubDate>Sat, 15 Apr 2017 17:37:05 -0400</pubDate>
+      
+      <guid>http://tstra.us/code/rustpi/</guid>
+      <description>This program uses futures to calculate pi using a monte carlo method. It randomly generates points and checks if they are inside of a unit circle. The proportion of the points inside and the total number of points are then used to estimate Pi.
+ extern crate rand; extern crate time; extern crate num_cpus; extern crate futures; extern crate futures_cpupool; use std::env; use rand::Rng; use time::PreciseTime; use futures::Future; use futures_cpupool::CpuPool; fn main() { let start = PreciseTime::now(); let args: Vec&amp;lt;String&amp;gt; = env::args().</description>
+    </item>
+    
+    <item>
+      <title>Monte Carlo Estimation of Pi (GoLang)</title>
+      <link>http://tstra.us/code/gopi/</link>
+      <pubDate>Sat, 21 May 2016 09:41:33 -0400</pubDate>
+      
+      <guid>http://tstra.us/code/gopi/</guid>
+      <description>This program uses goroutines to calculate a Monte Carlo estimation of Pi. It randomly generates points and them checks if its inside the circle. The proportion of the points inside and the total points is then used to estimate Pi.
+On an Intel 3770k, it accurately estimates Pi to 4 decimal digits using 1 trillion random points in just over 5 seconds.
+ package main import ( &amp;quot;fmt&amp;quot; &amp;quot;math&amp;quot; &amp;quot;math/rand&amp;quot; &amp;quot;os&amp;quot; &amp;quot;runtime&amp;quot; &amp;quot;strconv&amp;quot; &amp;quot;sync&amp;quot; &amp;quot;time&amp;quot; ) func monte_carlo_pi(radius float64, reps int, result *int, wait *sync.</description>
+    </item>
+    
+    <item>
+      <title>Mutithreaded Sumation (GoLang)</title>
+      <link>http://tstra.us/code/gosum/</link>
+      <pubDate>Sat, 21 May 2016 08:41:34 -0400</pubDate>
+      
+      <guid>http://tstra.us/code/gosum/</guid>
+      <description>This was my first attempt to write something that uses the simplicity of threading in Go using goroutines. The number of threads is determined in the program and the run time is calculated.
+The performance of Go is really shown off when I compared the times to a similar single threaded program written in Python. For the sum of 1 through 1 billion, Python&amp;rsquo;s time was measured in minutes, and Go took less then a 10th of a second.</description>
+    </item>
+    
+    <item>
+      <title>HTML Link Grabber (GoLang)</title>
+      <link>http://tstra.us/code/golinkgrabber/</link>
+      <pubDate>Sat, 21 May 2016 08:41:33 -0400</pubDate>
+      
+      <guid>http://tstra.us/code/golinkgrabber/</guid>
+      <description>This program takes in a web address as a command line argument. Then goes and gets that page and then prints out all of the links to other pages. While not all that useful, it was a good first step into web programming.
+Credit for this goes to Jack Canty&amp;rsquo;s website because I&amp;rsquo;ve never written anything like this. His can be found here.
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;flag&amp;quot; &amp;quot;net/http&amp;quot; &amp;quot;os&amp;quot; &amp;quot;io&amp;quot; &amp;quot;golang.</description>
+    </item>
+    
+  </channel>
+</rss>

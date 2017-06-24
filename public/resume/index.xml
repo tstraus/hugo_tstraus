@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Resumes on tstraus</title>
+    <link>http://tstra.us/resume/</link>
+    <description>Recent content in Resumes on tstraus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>be nice</copyright>
+    <lastBuildDate>Wed, 18 May 2016 18:07:35 -0400</lastBuildDate>
+    
+	<atom:link href="http://tstra.us/resume/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Resume</title>
+      <link>http://tstra.us/resume/home/</link>
+      <pubDate>Wed, 18 May 2016 18:07:35 -0400</pubDate>
+      
+      <guid>http://tstra.us/resume/home/</guid>
+      <description>Tucker Strausbaugh strausbaught@etown.edu Education Elizabethtown College: May 2015 - Elizabethtown, PA  Bachelor of Science in Computer Engineering, ABET accredited GPA Overall: 3.32, Major: 3.39 Dean&amp;rsquo;s List in Fall 2013 and Spring 2015 2013 Faculty Service Award in Engineering &amp;amp; Physics Member of Sigma Pi Sigma, National Physics Honors Society Member of the Order of the Engineer  Spring Grove Area High School: June 2011 - Spring Grove, PA  GPA: 3.</description>
+    </item>
+    
+  </channel>
+</rss>

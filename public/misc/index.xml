@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Miscs on tstraus</title>
+    <link>http://tstra.us/misc/</link>
+    <description>Recent content in Miscs on tstraus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>be nice</copyright>
+    <lastBuildDate>Sun, 13 Nov 2016 15:49:00 -0400</lastBuildDate>
+    
+	<atom:link href="http://tstra.us/misc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Counter</title>
+      <link>http://tstra.us/misc/counter/</link>
+      <pubDate>Sun, 13 Nov 2016 15:49:00 -0400</pubDate>
+      
+      <guid>http://tstra.us/misc/counter/</guid>
+      <description> 0 add 
+Clear 
+ </description>
+    </item>
+    
+    <item>
+      <title>Go</title>
+      <link>http://tstra.us/misc/go/</link>
+      <pubDate>Sat, 28 May 2016 16:59:37 -0400</pubDate>
+      
+      <guid>http://tstra.us/misc/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Water Quality Probe</title>
+      <link>http://tstra.us/misc/probe/</link>
+      <pubDate>Sat, 21 May 2016 09:38:07 -0400</pubDate>
+      
+      <guid>http://tstra.us/misc/probe/</guid>
+      <description>This water quality probe was mine, and three others, senior project in computer engineering that we worked on during our final year at Elizabethtown College. We meant to produce the probe as simply as possible, more as a proof of concept, instead of proving how small or cheapily the device could be made. Most of the electronics were off-the-shelf parts from Adafruit and Sparkfun, all contained in a 3D-printed casing we designed.</description>
+    </item>
+    
+    <item>
+      <title>Random Mythbusters Episode Generator</title>
+      <link>http://tstra.us/misc/randommythbusters/</link>
+      <pubDate>Sat, 21 May 2016 09:33:41 -0400</pubDate>
+      
+      <guid>http://tstra.us/misc/randommythbusters/</guid>
+      <description>Generate All episodes  Hulu only  
+ </description>
+    </item>
+    
+    <item>
+      <title>Random Top Gear UK Episode Generator</title>
+      <link>http://tstra.us/misc/randomtopgear/</link>
+      <pubDate>Sat, 21 May 2016 09:30:29 -0400</pubDate>
+      
+      <guid>http://tstra.us/misc/randomtopgear/</guid>
+      <description>Generate All episodes  Amazon Prime only  Netflix only  
+ </description>
+    </item>
+    
+  </channel>
+</rss>

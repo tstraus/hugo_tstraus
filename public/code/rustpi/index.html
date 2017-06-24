@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Monte Carlo Estimation of Pi (Rust)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.23" />
+  <link href="" rel="alternate" type="application/rss+xml" title="tstraus" />
+  <link href="http://tstra.us/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://tstra.us/css/hc.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  
+    
+    </head>
+    <body>
+<div class="nav-toggle"><i class="fa fa-bars fa-2x"></i> Herring Cove </div>
+      <div id = "wrapper">
+
+
+<div class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="http://tstra.us/"><p class="navbar-brand">tstraus</p></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+					
+					
+					<li><a href="http://tstra.us/about/home">About </a></li>
+					
+					<li><a href="http://tstra.us/code/">Code </a></li>
+					
+					<li><a href="http://tstra.us/drawings/">Drawings </a></li>
+					
+					<li><a href="http://tstra.us/misc/">Misc </a></li>
+					
+					<li><a href="http://tstra.us/resume/home">Resume </a></li>
+					
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+       
+       <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+					<img src="http://tstra.us/images/tuckles.jpg" />
+          <li class="sidebar-brand"><a href="http://tstra.us/"><h1 class="brand">tstraus</h1></a><h3>Tucker Strausbaugh</h3></li>
+          <hr />
+					
+						<li><a href="http://tstra.us/about/home">About </a></li>
+					
+						<li><a href="http://tstra.us/code/">Code </a></li>
+					
+						<li><a href="http://tstra.us/drawings/">Drawings </a></li>
+					
+						<li><a href="http://tstra.us/misc/">Misc </a></li>
+					
+						<li><a href="http://tstra.us/resume/home">Resume </a></li>
+					
+          <hr />
+          <div id="social-wrapper">
+           <li> <a href="https://www.facebook.com/tckrsstrsbgh"><i class="fa fa-facebook-square"></i> facebook</a></li>
+           <li> <a href="https://www.linkedin.com/in/tucker-strausbaugh-04018027"><i class="fa fa-linkedin-square"></i> linkedin</a> </li>
+           <li> <a href="https://github.com/tstraus"><i class="fa fa-github-square"></i> github</a> </li>
+           
+         </div>
+       </ul>
+     </div>
+
+
+
+     <div class="container">
+
+
+  <div id="article">
+   <div class="article-title">Monte Carlo Estimation of Pi (Rust)</div>
+   <p class="meta"><small>&nbsp;<i class="fa fa-calendar-o"></i> 2017-04-15</small></p> <hr/>
+   <div class="post">
+     <p><link href="../../css/prism.css" rel="stylesheet"/>
+<script src="../../scripts/prism.js"></script></p>
+
+<p>This program uses futures to calculate pi using a monte carlo method. It randomly generates points and checks if they are inside of a unit circle. The proportion of the points inside and the total number of points are then used to estimate Pi.</p>
+
+<iframe src="https://ghbtns.com/github-btn.html?user=tstraus&repo=monte_carlo_pi_rust&type=star&count=false&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+
+<pre><code class="language-rust">extern crate rand;
+extern crate time;
+extern crate num_cpus;
+extern crate futures;
+extern crate futures_cpupool;
+
+use std::env;
+use rand::Rng;
+use time::PreciseTime;
+use futures::Future;
+use futures_cpupool::CpuPool;
+
+fn main() {
+    let start = PreciseTime::now();
+
+    let args: Vec&lt;String&gt; = env::args().collect();
+    let reps: u64 = args[1].parse().unwrap();
+    let cpus = num_cpus::get();
+    let pool = CpuPool::new_num_cpus();
+
+    let mut futures = Vec::new();
+    for _ in 0..cpus {
+        let input_reps = reps / cpus as u64;
+        let future = pool.spawn_fn(move || {
+            let count = monte_carlo_pi(input_reps);
+            let res: Result&lt;u64, ()&gt; = Ok(count);
+            return res;
+        });
+
+        futures.push(future);
+    }
+
+    let mut total_count: u64 = 0;
+    for future in futures {
+        total_count = total_count + future.wait().unwrap();
+    }
+
+    let pi = total_count as f64 / reps as f64 * 4.0;
+
+    let end = PreciseTime::now();
+
+    println!(&quot;pi: {0}&quot;, pi);
+    println!(&quot;runtime: {0}&quot;, start.to(end));
+
+    std::process::exit(0);
+}
+
+fn monte_carlo_pi(reps: u64) -&gt; u64 {
+    let mut count = 0;
+    let mut rng = rand::thread_rng();
+
+    for _ in 0..reps {
+        if in_unit_circle(rng.gen::&lt;f64&gt;(), rng.gen::&lt;f64&gt;()) {
+            count += 1;
+        }
+    }
+
+    return count;
+}
+
+fn in_unit_circle(x: f64, y: f64) -&gt; bool {
+    if x*x + y*y &lt; 1.0 {
+        return true;
+    } else {
+        return false;
+    }
+}
+</code></pre>
+
+   </div>
+ </div>
+
+
+ <ul class="pager">
+      &nbsp;<li class="previous"><a href="http://tstra.us/code/cpppi/"> Async Monte Carlo Pi (C&#43;&#43;)</a></li>
+      &nbsp;<li class="next"><a href="http://tstra.us/misc/counter/"> Counter</a></li>
+</ul>
+
+
+
+    </ul>
+    </div>
+    <footer>
+
+        <p class="text-muted credit">&copy; 2017. All rights reserved. </p>
+    </footer>
+ 
+    <script src="http://tstra.us/js/jquery-1.10.2.min.js"></script>
+    <script src="http://tstra.us/js/bootstrap.min.js"></script>
+    <script src="http://tstra.us/js/bootstrap.js"></script>
+    <script type="text/javascript" src="http://tstra.us/js/hc.js"></script>
+</body>
+
+</html>
+

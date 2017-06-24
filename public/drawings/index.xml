@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Drawings on tstraus</title>
+    <link>http://tstra.us/drawings/</link>
+    <description>Recent content in Drawings on tstraus</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>be nice</copyright>
+    <lastBuildDate>Sat, 21 May 2016 20:04:48 -0400</lastBuildDate>
+    
+	<atom:link href="http://tstra.us/drawings/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Fountain Pen</title>
+      <link>http://tstra.us/drawings/fountainpen/</link>
+      <pubDate>Sat, 21 May 2016 20:04:48 -0400</pubDate>
+      
+      <guid>http://tstra.us/drawings/fountainpen/</guid>
+      <description>These are a few of my attempts at using a fountain pen.</description>
+    </item>
+    
+    <item>
+      <title>Poodles (Poop Doodles)</title>
+      <link>http://tstra.us/drawings/poodles/</link>
+      <pubDate>Sat, 21 May 2016 09:15:18 -0400</pubDate>
+      
+      <guid>http://tstra.us/drawings/poodles/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Drawings From Class</title>
+      <link>http://tstra.us/drawings/drawingsfromclass/</link>
+      <pubDate>Wed, 18 May 2016 18:29:56 -0400</pubDate>
+      
+      <guid>http://tstra.us/drawings/drawingsfromclass/</guid>
+      <description>These are a few of my drawings from my classes while at Elizabethtown College, taught by Jeff Geib.</description>
+    </item>
+    
+  </channel>
+</rss>

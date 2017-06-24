@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Mutithreaded Sumation (GoLang)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.23" />
+  <link href="" rel="alternate" type="application/rss+xml" title="tstraus" />
+  <link href="http://tstra.us/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://tstra.us/css/hc.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  
+    
+    </head>
+    <body>
+<div class="nav-toggle"><i class="fa fa-bars fa-2x"></i> Herring Cove </div>
+      <div id = "wrapper">
+
+
+<div class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="http://tstra.us/"><p class="navbar-brand">tstraus</p></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+					
+					
+					<li><a href="http://tstra.us/about/home">About </a></li>
+					
+					<li><a href="http://tstra.us/code/">Code </a></li>
+					
+					<li><a href="http://tstra.us/drawings/">Drawings </a></li>
+					
+					<li><a href="http://tstra.us/misc/">Misc </a></li>
+					
+					<li><a href="http://tstra.us/resume/home">Resume </a></li>
+					
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+       
+       <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+					<img src="http://tstra.us/images/tuckles.jpg" />
+          <li class="sidebar-brand"><a href="http://tstra.us/"><h1 class="brand">tstraus</h1></a><h3>Tucker Strausbaugh</h3></li>
+          <hr />
+					
+						<li><a href="http://tstra.us/about/home">About </a></li>
+					
+						<li><a href="http://tstra.us/code/">Code </a></li>
+					
+						<li><a href="http://tstra.us/drawings/">Drawings </a></li>
+					
+						<li><a href="http://tstra.us/misc/">Misc </a></li>
+					
+						<li><a href="http://tstra.us/resume/home">Resume </a></li>
+					
+          <hr />
+          <div id="social-wrapper">
+           <li> <a href="https://www.facebook.com/tckrsstrsbgh"><i class="fa fa-facebook-square"></i> facebook</a></li>
+           <li> <a href="https://www.linkedin.com/in/tucker-strausbaugh-04018027"><i class="fa fa-linkedin-square"></i> linkedin</a> </li>
+           <li> <a href="https://github.com/tstraus"><i class="fa fa-github-square"></i> github</a> </li>
+           
+         </div>
+       </ul>
+     </div>
+
+
+
+     <div class="container">
+
+
+  <div id="article">
+   <div class="article-title">Mutithreaded Sumation (GoLang)</div>
+   <p class="meta"><small>&nbsp;<i class="fa fa-calendar-o"></i> 2016-05-21</small></p> <hr/>
+   <div class="post">
+     <p><link href="../../css/prism.css" rel="stylesheet"/>
+<script src="../../scripts/prism.js"></script></p>
+
+<p>This was my first attempt to write something that uses the simplicity of threading in Go using goroutines. The number of threads is determined in the program and the run time is calculated.</p>
+
+<p>The performance of Go is really shown off when I compared the times to a similar single threaded program written in Python. For the sum of 1 through 1 billion, Python&rsquo;s time was measured in minutes, and Go took less then a 10th of a second.</p>
+
+<pre><code class="language-go">package main
+
+import (
+    &quot;fmt&quot;
+    &quot;sync&quot;
+    &quot;time&quot;
+    &quot;runtime&quot;
+    )
+
+func sum(low int, high int, result *int, wait *sync.WaitGroup) {
+    sum := 0
+
+    for i := low; i &lt;= high; i++ {
+        sum += i
+    }
+    //fmt.Println(sum)
+    *result = sum
+    wait.Done()
+}
+
+func main() {
+    cores := runtime.NumCPU()
+    runtime.GOMAXPROCS(cores)
+    //fmt.Println(cores)
+    var wait sync.WaitGroup
+    subs := make([]int, cores)
+    var max int
+    min := 1
+    /*var min int
+    fmt.Scan(&amp;min)*/
+    fmt.Scan(&amp;max)
+    start := time.Now()
+    wait.Add(cores)
+
+    for i := 0; i &lt; cores; i++ {
+        go sum(min + (max / cores) * (i), (max / cores) * (i + 1), &amp;subs[i], &amp;wait)
+        fmt.Println(&quot;go started&quot;)
+    }
+
+    wait.Wait()
+    var sum int
+
+    for i := 0; i &lt; cores; i++ {
+        sum += subs[i]
+    }
+    fmt.Println(sum)
+    fmt.Println(time.Since(start))
+}
+</code></pre>
+
+   </div>
+ </div>
+
+
+ <ul class="pager">
+      &nbsp;<li class="previous"><a href="http://tstra.us/drawings/poodles/"> Poodles (Poop Doodles)</a></li>
+      &nbsp;<li class="next"><a href="http://tstra.us/code/golinkgrabber/"> HTML Link Grabber (GoLang)</a></li>
+</ul>
+
+
+
+    </ul>
+    </div>
+    <footer>
+
+        <p class="text-muted credit">&copy; 2017. All rights reserved. </p>
+    </footer>
+ 
+    <script src="http://tstra.us/js/jquery-1.10.2.min.js"></script>
+    <script src="http://tstra.us/js/bootstrap.min.js"></script>
+    <script src="http://tstra.us/js/bootstrap.js"></script>
+    <script type="text/javascript" src="http://tstra.us/js/hc.js"></script>
+</body>
+
+</html>
+
