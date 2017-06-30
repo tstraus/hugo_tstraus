@@ -9,6 +9,10 @@ title = "Fountain Pen"
     
 These are a few of my attempts at using a fountain pen.
 
+![Jennie Profile](../../images/drawings/fountainPen/jennieProfile.jpg)
+
+----------------------------------------------------
+
 ![Jennie](../../images/drawings/fountainPen/jennie.jpg)
 
 -----------------------------------------------------
