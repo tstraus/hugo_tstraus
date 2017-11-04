@@ -15,7 +15,6 @@ Hi, I'm Tucker. I'm from south central Pennsylvania, where I went to high school
 * Learning electric guitar and bass
 
 #### Interests
-* Jennie
 * PC Gaming (Starcraft, GTA, League of Legends, CIV VI)
 * Music
 * Cars, driving

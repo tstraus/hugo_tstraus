@@ -21,23 +21,11 @@ These are a few of my attempts at using a fountain pen.
 
 -----------------------------------------------------
 
-![Jennie Bed](../../images/drawings/fountainPen/jennieBed.jpeg)
-
------------------------------------------------------
-
 ![Stare](../../images/drawings/fountainPen/stare.jpeg)
 
 -----------------------------------------------------
 
 ![Mal](../../images/drawings/fountainPen/mal.jpeg)
-
------------------------------------------------------
-
-![Complicated](../../images/drawings/fountainPen/complicated.jpeg)
-
------------------------------------------------------
-
-![Bikini](../../images/drawings/fountainPen/bikini.jpeg)
 
 -----------------------------------------------------
 
